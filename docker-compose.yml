@@ -1,23 +1,32 @@
+version: "3.9"
+
 services:
-  formapp:
+  frontend:
     build:
-      context: ./formapp
-    container_name: simple-form
+      context: ./formapp   # folder where frontend Dockerfile is
+    container_name: frontend
+    restart: always
     ports:
       - "8000:8000"
-    volumes:
-      - submissions_data:/app/data
-    restart: always
-    depends_on:
-      - backend
 
   backend:
     build:
-      context: ./formback
-    container_name: json-storage
-    volumes:
-      - submissions_data:/app/data
+      context: ./formback   # folder where backend Dockerfile is
+    container_name: backend
     restart: always
+    ports:
+      - "5000:5000"
+  
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"   # host port 8080 → container port 80
+    depends_on:
+      - frontend
+      - backend
 
-volumes:
-  submissions_data:
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/default.conf:ro
+
+    restart: always

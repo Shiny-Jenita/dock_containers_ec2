@@ -1,14 +1,11 @@
-# Base image
-FROM python:3.12-slim
+FROM nginx:latest
 
-# Set working directory
-WORKDIR /app
+# Remove default Nginx HTML
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy all project files into container
-COPY . /app
+# Copy frontend files
+COPY . /usr/share/nginx/html/
 
-# Expose port
-EXPOSE 8000
 
-# Run your server
-CMD ["python", "server.py"]
+EXPOSE 80
+

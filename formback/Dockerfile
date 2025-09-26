@@ -1,11 +1,11 @@
-FROM python:3.12-slim
+FROM python:3.9-slim
 
-# Set working directory
-WORKDIR /app/data
+WORKDIR /app
 
-# Create submissions.json only if it doesn't exist
-RUN mkdir -p /app/data && \
-    touch submissions.json
+COPY server.py .
 
-# Keep container alive
-CMD ["tail", "-f", "/dev/null"]
+RUN mkdir -p /app/data
+
+EXPOSE 8000
+
+CMD ["python", "server.py"]
