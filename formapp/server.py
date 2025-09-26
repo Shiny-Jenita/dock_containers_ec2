@@ -3,7 +3,7 @@ import urllib.parse
 import json
 import os
 
-DATA_FILE = "submissions.json"
+DATA_FILE = "/app/data/submissions.json"
 
 # Ensure JSON file exists
 if not os.path.exists(DATA_FILE):
@@ -30,7 +30,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
    
     
     def do_POST(self):
-        if self.path == "/submit":
+        if self.path == "app/data/submit":
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = urllib.parse.parse_qs(post_data.decode())
