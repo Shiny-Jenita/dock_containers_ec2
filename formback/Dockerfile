@@ -6,6 +6,6 @@ COPY server.py .
 
 RUN mkdir -p /app/data
 
-EXPOSE 8000
+EXPOSE 5000
 
 CMD ["python", "server.py"]
