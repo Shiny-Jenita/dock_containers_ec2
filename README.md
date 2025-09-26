@@ -1,1 +1,1 @@
-Hi I'm docker image sampform
+Hi I have docker images and seperate containers for nginx,frontend and backend. 
