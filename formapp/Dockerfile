@@ -1,5 +1,6 @@
 FROM nginx:latest
 
+
 # Remove default Nginx HTML
 RUN rm -rf /usr/share/nginx/html/*
 
