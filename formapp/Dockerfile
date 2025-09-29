@@ -1,12 +1,14 @@
-FROM nginx:latest
+FROM python:3.11-slim
 
+WORKDIR /app
 
-# Remove default Nginx HTML
-RUN rm -rf /usr/share/nginx/html/*
+# Copy HTML and static files
+COPY index.html /app/
 
-# Copy frontend files
-COPY . /usr/share/nginx/html/
+# Expose frontend port
+EXPOSE 8080
 
+# Run Python's built-in HTTP server
+CMD ["python", "-m", "http.server", "8080"]
 
-EXPOSE 80
 
