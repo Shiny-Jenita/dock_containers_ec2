@@ -46,7 +46,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
-server_address = ("", 8000)
+server_address = ("", 5000)
 httpd = HTTPServer(server_address, Handler)
-print("Backend running on port 8000...")
+print("Backend running on port 5000...")
 httpd.serve_forever()
