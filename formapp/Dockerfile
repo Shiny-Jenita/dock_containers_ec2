@@ -1,14 +1,17 @@
-FROM python:3.11-slim
+# Use official Nginx image
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy your frontend files to Nginx html directory
+COPY . /usr/share/nginx/html
 
-# Copy HTML and static files
-COPY index.html /app/
+# Copy custom Nginx config if needed
+# COPY default.conf /etc/nginx/conf.d/default.conf
 
-# Expose frontend port
-EXPOSE 8080
+# Expose port 80 (will be mapped to 8080 in Docker Compose)
+EXPOSE 80
 
-# Run Python's built-in HTTP server
-CMD ["python", "-m", "http.server", "8080"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
+
 
 
